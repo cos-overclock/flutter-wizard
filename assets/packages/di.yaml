@@ -1,0 +1,9 @@
+id: di
+display_name: "DI (Dependency Injection)"
+packages:
+  - id: get_it
+    display_name: "get_it"
+    pub_dev_name: "get_it"
+  - id: injectable
+    display_name: "injectable"
+    pub_dev_name: "injectable"

@@ -92,6 +92,7 @@ Package definitions are designed to be externally extensible via plugins (YAML f
 - Riverpod options: use code generation / use flutter_hooks
 - Selected packages are automatically added to `pubspec.yaml`
 - All package categories can be skipped to generate a minimal project
+- Built-in package definitions are loaded from YAML files embedded in the binary at compile time (`assets/packages/*.yaml`); each file defines one category with its packages and options
 - Categories, packages, and options can be externally added and extended via plugins
 
 ### 4. Environment Separation
@@ -178,7 +179,7 @@ Package definitions are designed to be externally extensible via plugins (YAML f
 | clap v4 | CLI command and argument parsing |
 | tera | Template engine (variable substitution) |
 | serde / serde_yaml | Reading and writing YAML config files |
-| TBD (inquire / dialoguer) | Interactive wizard |
+| inquire | Interactive wizard (Text / Select / MultiSelect prompts) |
 
 ## Notes
 

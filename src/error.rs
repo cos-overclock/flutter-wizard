@@ -13,4 +13,7 @@ pub enum WizardError {
 
     #[error("Generator error: {0}")]
     Generator(String),
+
+    #[error("Prompt error: {0}")]
+    Prompt(String),
 }

@@ -1,0 +1,9 @@
+id: code_generation
+display_name: "Code Generation"
+packages:
+  - id: build_runner
+    display_name: "build_runner"
+    pub_dev_name: "build_runner"
+  - id: flutter_gen
+    display_name: "flutter_gen"
+    pub_dev_name: "flutter_gen"

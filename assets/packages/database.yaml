@@ -1,0 +1,12 @@
+id: database
+display_name: "Database"
+packages:
+  - id: drift
+    display_name: "drift"
+    pub_dev_name: "drift"
+  - id: isar
+    display_name: "isar"
+    pub_dev_name: "isar"
+  - id: sqflite
+    display_name: "sqflite"
+    pub_dev_name: "sqflite"

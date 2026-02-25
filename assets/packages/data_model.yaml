@@ -1,0 +1,9 @@
+id: data_model
+display_name: "Data Model"
+packages:
+  - id: freezed
+    display_name: "freezed"
+    pub_dev_name: "freezed"
+  - id: built_value
+    display_name: "built_value"
+    pub_dev_name: "built_value"
