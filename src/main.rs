@@ -1,8 +1,8 @@
 mod cli;
 mod config;
 mod error;
-mod generator;
-mod plugin;
+mod generator; // TODO: integrate generator::generate() after collecting user input in the wizard
+mod plugin; // TODO: integrate plugin::load() into the wizard initialization once the plugin system is implemented
 mod template;
 mod wizard;
 
@@ -15,25 +15,19 @@ fn main() {
     let result = match cli.command {
         Some(Commands::Config(args)) => {
             if args.show {
-                config::show()
-            } else if args.reset {
-                config::reset()
+                config::show().map_err(|e| format!("Config error: {e}"))
             } else {
-                eprintln!("error: specify --show or --reset");
-                std::process::exit(1);
+                config::reset().map_err(|e| format!("Config error: {e}"))
             }
         }
         Some(Commands::Template(args)) => {
             if args.list {
-                template::list()
-            } else if args.init {
-                template::init()
+                template::list().map_err(|e| format!("Template error: {e}"))
             } else {
-                eprintln!("error: specify --list or --init");
-                std::process::exit(1);
+                template::init().map_err(|e| format!("Template error: {e}"))
             }
         }
-        None => wizard::run(),
+        None => wizard::run(cli.config, cli.force).map_err(|e| format!("Wizard error: {e}")),
     };
 
     if let Err(e) = result {

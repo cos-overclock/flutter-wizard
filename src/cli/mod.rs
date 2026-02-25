@@ -34,6 +34,7 @@ pub enum Commands {
 }
 
 #[derive(Debug, clap::Args)]
+#[group(required = true, multiple = false)]
 pub struct ConfigArgs {
     /// Display current default configuration
     #[arg(long)]
@@ -45,6 +46,7 @@ pub struct ConfigArgs {
 }
 
 #[derive(Debug, clap::Args)]
+#[group(required = true, multiple = false)]
 pub struct TemplateArgs {
     /// List available templates
     #[arg(long)]
