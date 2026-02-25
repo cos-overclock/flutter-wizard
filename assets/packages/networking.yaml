@@ -1,0 +1,9 @@
+id: networking
+display_name: "Networking"
+packages:
+  - id: dio
+    display_name: "dio"
+    pub_dev_name: "dio"
+  - id: http
+    display_name: "http"
+    pub_dev_name: "http"

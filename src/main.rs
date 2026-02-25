@@ -2,6 +2,7 @@ mod cli;
 mod config;
 mod error;
 mod generator; // TODO: integrate generator::generate() after collecting user input in the wizard
+mod packages;
 mod plugin; // TODO: integrate plugin::load() into the wizard initialization once the plugin system is implemented
 mod template;
 mod wizard;

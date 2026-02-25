@@ -1,0 +1,9 @@
+id: routing
+display_name: "Routing"
+packages:
+  - id: go_router
+    display_name: "go_router"
+    pub_dev_name: "go_router"
+  - id: auto_route
+    display_name: "auto_route"
+    pub_dev_name: "auto_route"

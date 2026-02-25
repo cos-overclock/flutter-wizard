@@ -1,0 +1,17 @@
+id: state_management
+display_name: "State Management"
+packages:
+  - id: riverpod
+    display_name: "Riverpod"
+    pub_dev_name: "flutter_riverpod"
+    options:
+      - id: code_gen
+        display_name: "Use code generation (riverpod_generator)"
+      - id: flutter_hooks
+        display_name: "Use flutter_hooks"
+  - id: bloc
+    display_name: "Bloc"
+    pub_dev_name: "flutter_bloc"
+  - id: getx
+    display_name: "GetX"
+    pub_dev_name: "get"

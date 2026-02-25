@@ -1,0 +1,9 @@
+id: logger
+display_name: "Logger"
+packages:
+  - id: logger
+    display_name: "logger"
+    pub_dev_name: "logger"
+  - id: talker
+    display_name: "talker"
+    pub_dev_name: "talker"
