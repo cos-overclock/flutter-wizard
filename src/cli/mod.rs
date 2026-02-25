@@ -1,10 +1,17 @@
-use clap::{Parser, Subcommand};
+use clap::{Parser, Subcommand, builder::Styles, builder::styling::AnsiColor};
 use std::path::PathBuf;
+
+const STYLES: Styles = Styles::styled()
+    .header(AnsiColor::BrightGreen.on_default().bold())
+    .usage(AnsiColor::BrightGreen.on_default().bold())
+    .literal(AnsiColor::BrightGreen.on_default())
+    .placeholder(AnsiColor::White.on_default());
 
 #[derive(Debug, Parser)]
 #[command(name = "flutter_wizard")]
 #[command(about = "Interactive wizard for generating Flutter projects")]
 #[command(version)]
+#[command(styles = STYLES)]
 pub struct Cli {
     /// Path to a YAML config file
     #[arg(long, value_name = "FILE")]
