@@ -45,7 +45,15 @@ pub fn run(_config: Option<PathBuf>, force: bool) -> Result<(), WizardError> {
         license,
     };
 
-    // Check for existing target directory.
+    // Step 9: Confirmation screen
+    let confirmed = steps::step9_confirm::run(&wizard_config)?;
+    if !confirmed {
+        return Err(WizardError::Config(
+            "Aborted by user at confirmation screen.".to_string(),
+        ));
+    }
+
+    // Check for existing target directory after user has confirmed the settings.
     let target_dir = std::path::Path::new(&wizard_config.project_name);
     if target_dir.exists() && !force {
         let confirmed = inquire::Confirm::new(&format!(
@@ -61,14 +69,6 @@ pub fn run(_config: Option<PathBuf>, force: bool) -> Result<(), WizardError> {
                 "Aborted: target directory already exists.".to_string(),
             ));
         }
-    }
-
-    // Step 9: Confirmation screen
-    let confirmed = steps::step9_confirm::run(&wizard_config)?;
-    if !confirmed {
-        return Err(WizardError::Config(
-            "Aborted by user at confirmation screen.".to_string(),
-        ));
     }
 
     println!("\nWizard completed. Configuration confirmed.");
