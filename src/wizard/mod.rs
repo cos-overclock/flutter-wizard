@@ -23,12 +23,9 @@ pub fn run(_config: Option<PathBuf>, force: bool) -> Result<(), WizardError> {
     // Step 4: Package categories
     let selected_category_ids = steps::step4_categories::run(&categories)?;
 
-    // Step 5: Packages within each selected category
+    // Step 5: Packages within each selected category (options prompted immediately after each package)
     let selected_categories =
         steps::step5_packages::run(&categories, selected_category_ids)?;
-
-    // Step 6: Options for selected packages
-    let selected_categories = steps::step6_options::run(selected_categories, &categories)?;
 
     // Step 7: Environment names
     let environments = steps::step7_environments::run()?;
