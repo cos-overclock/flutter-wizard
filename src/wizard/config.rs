@@ -6,6 +6,8 @@ pub struct SelectedPackage {
     pub pub_dev_name: String,
     /// Subset of PackageOption.id values the user chose.
     pub selected_options: Vec<String>,
+    /// Display names corresponding to each selected_options entry (same order).
+    pub selected_option_names: Vec<String>,
 }
 
 /// Tracks which packages within a category were selected.
@@ -29,7 +31,7 @@ pub struct WizardConfig {
     // Step 3
     pub architecture: Architecture,
 
-    // Steps 4, 5, 6
+    // Steps 4 and 5
     pub categories: Vec<SelectedCategory>,
 
     // Step 7

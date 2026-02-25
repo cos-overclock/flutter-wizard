@@ -13,7 +13,7 @@ pub fn run(
         let cat = all_categories
             .iter()
             .find(|c| &c.id == cat_id)
-            .expect("category id must exist in loaded categories");
+            .ok_or_else(|| WizardError::Prompt(format!("category '{}' not found in loaded categories", cat_id)))?;
 
         let display: Vec<&str> = cat.packages.iter().map(|p| p.display_name.as_str()).collect();
 
@@ -34,6 +34,7 @@ pub fn run(
                 display_name: p.display_name.clone(),
                 pub_dev_name: p.pub_dev_name.clone(),
                 selected_options: vec![],
+                selected_option_names: vec![],
             })
             .collect();
 
@@ -43,7 +44,12 @@ pub fn run(
                 .packages
                 .iter()
                 .find(|p| p.id == sel_pkg.id)
-                .expect("selected package must exist in loaded packages");
+                .ok_or_else(|| {
+                    WizardError::Prompt(format!(
+                        "selected package '{}' not found in loaded packages",
+                        sel_pkg.id
+                    ))
+                })?;
 
             if orig_pkg.options.is_empty() {
                 continue;
@@ -63,12 +69,13 @@ pub fn run(
             .prompt()
             .map_err(|e| WizardError::Prompt(e.to_string()))?;
 
-            sel_pkg.selected_options = orig_pkg
+            let chosen_opts: Vec<_> = orig_pkg
                 .options
                 .iter()
                 .filter(|o| chosen.contains(&o.display_name.as_str()))
-                .map(|o| o.id.clone())
                 .collect();
+            sel_pkg.selected_options = chosen_opts.iter().map(|o| o.id.clone()).collect();
+            sel_pkg.selected_option_names = chosen_opts.iter().map(|o| o.display_name.clone()).collect();
         }
 
         if !packages.is_empty() {

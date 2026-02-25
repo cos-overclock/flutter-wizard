@@ -71,6 +71,6 @@ pub fn run(_config: Option<PathBuf>, force: bool) -> Result<(), WizardError> {
         ));
     }
 
-    println!("\nGeneration complete!");
+    println!("\nWizard completed. Configuration confirmed.");
     Ok(())
 }

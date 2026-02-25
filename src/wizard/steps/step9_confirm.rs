@@ -17,14 +17,14 @@ pub fn run(config: &WizardConfig) -> Result<bool, WizardError> {
         println!("Packages     :");
         for cat in &config.categories {
             for pkg in &cat.packages {
-                if pkg.selected_options.is_empty() {
+                if pkg.selected_option_names.is_empty() {
                     println!("  - {} / {}", cat.display_name, pkg.display_name);
                 } else {
                     println!(
                         "  - {} / {}  [options: {}]",
                         cat.display_name,
                         pkg.display_name,
-                        pkg.selected_options.join(", ")
+                        pkg.selected_option_names.join(", ")
                     );
                 }
             }
@@ -47,7 +47,7 @@ pub fn run(config: &WizardConfig) -> Result<bool, WizardError> {
 
     println!("===========================================\n");
 
-    let confirmed = Confirm::new("Proceed with project generation?")
+    let confirmed = Confirm::new("Proceed with these settings?")
         .with_default(true)
         .prompt()
         .map_err(|e| WizardError::Prompt(e.to_string()))?;
