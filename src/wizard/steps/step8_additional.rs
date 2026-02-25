@@ -26,6 +26,7 @@ pub fn run() -> Result<(Vec<CicdWorkflow>, Option<License>), WizardError> {
     let license_options = vec!["None", "MIT", "Apache 2.0", "GPL v3"];
     let selected_license = Select::new("License:", license_options)
         .with_starting_cursor(1) // default to MIT
+        .without_filtering()
         .prompt()
         .map_err(|e| WizardError::Prompt(e.to_string()))?;
 

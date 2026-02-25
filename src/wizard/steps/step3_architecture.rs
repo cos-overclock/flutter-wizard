@@ -12,6 +12,7 @@ pub fn run() -> Result<Architecture, WizardError> {
     let display: Vec<&str> = options.iter().map(|a| a.display_name()).collect();
 
     let selected = Select::new("Architecture:", display)
+        .without_filtering()
         .prompt()
         .map_err(|e| WizardError::Prompt(e.to_string()))?;
 
